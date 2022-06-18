@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Feedback {% endblock %}
+
+{% block content %} 
+
+<div class="container">
+    <form method="POST" action="users/{{user.username}}/feedback/add">
+        {{ form.hidden_tag() }}
+
+        {% for field in form 
+            if field.widget.input_type != 'hidden' %}
+
+            <p>
+                {{field.label}}
+                {{field(class_='form-control')}}
+            </p>
+        {% endfor %}
+        <button class="btn btn-sm btn-primary" type="submit">Add feedback</button>
+    </form>
+</div>
+{% endblock %}

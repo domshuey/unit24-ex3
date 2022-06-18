@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{user.username}}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>User: {{user.username}}</h1>
+    <h3 class="display-4">Info:</h3>
+    <ul>
+        <li>First Name: {{user.first_name}}</li>
+        <li>Last Name: {{user.last_name}}</li>
+        <li>Email: {{user.email}}</li>
+    </ul>
+
+    <h2 class="display-3">Feedback</h2>
+    {% for each in feedback %}
+    <div class="card my-4">
+        <div class="card-title">{{each.title}}</div>
+        <div class="card-body">{{each.content}}</div>
+        <a href="/feedback/{{each.id}}/update">Edit</a>
+        <a href="/feedback/{{each.id}}/delete">Delete</a>
+    </div>
+    {% endfor %}
+    <a href="/users/{{user.username}}/feedback/add" class="btn btn-warning btn-md">Add feedback</a>
+</div>
+{% endblock%}
